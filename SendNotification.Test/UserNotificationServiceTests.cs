@@ -14,8 +14,7 @@ public class UserNotificationServiceTests
 {
     private Mock<ILogger<UserNotificationService>> _loggerMock;
     private Mock<IDatabase> _databaseMock;
-    private Mock<IQueueClient> _serviceBusQueueClientMock;
-    private Mock<IOptions<Config>> _configMock;
+    private Mock<IQueueClient> _serviceBusQueueClientMock; 
 
     [TestInitialize]
     public void TestInitialize()
