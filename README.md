@@ -24,6 +24,7 @@ Before running the SendNotification project, ensure you have the following insta
 
 ```bash
 git clone https://github.com/beingdeep/SendNotification.git
+```
 
 ## Project Structure
 
