@@ -1,6 +1,6 @@
 # Send Notification Assignment Solution
 
-The Send Notification project is an Azure Function App that facilitates sending notifications to users by processing user notifications and sending them to a Service Bus queue. This project is built using Microsoft Azure Functions, Microsoft Azure Service Bus, and relies on an external database for retrieving user notifications. Detailed Assignment can be found here [a relative link](ASSIGNMENT.md)
+The Send Notification project is an Azure Function App that facilitates sending notifications to users by processing user notifications and sending them to a Service Bus queue. This project is built using Microsoft Azure Functions, Microsoft Azure Service Bus, and relies on an external database for retrieving user notifications. Detailed Assignment can be found [here](ASSIGNMENT.md).
 
 ## Table of Contents
 
