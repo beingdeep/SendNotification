@@ -4,11 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 using SendNotification.Configurations;
 using Db = SendNotification.Database;
 using SendNotification.Services;
-using System;
 using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 using Microsoft.Azure.ServiceBus;
-using System.Data;
 
 [assembly: FunctionsStartup(typeof(SendNotification.Startup))]
 namespace SendNotification;
