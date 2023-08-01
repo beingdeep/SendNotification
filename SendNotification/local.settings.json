@@ -1,11 +1,11 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=raboassignment;AccountKey=qVZ+3cfv9MiYhBlnEYDgVopeM5jDuVs87aGSxCPKM/h98ciKbfb9kWehVtiI0ylBfmBtlYt457fn+AStP9s9qA==;EndpointSuffix=core.windows.net",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "SQLConnection": "",
-    "QueueConnectionString": "",
-    "QueueName": "",
+    "SQLConnection": "Server=tcp:raboassignment.database.windows.net,1433;Initial Catalog=raboassignment;Persist Security Info=False;User ID=sadmin;Password=Winter@456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+    "QueueConnectionString": "Endpoint=sb://raboassignment.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=MKZVzOvFIeAkcpaGt8jODmXEWkW5Hc2ap+ASbDZTnyM=",
+    "QueueName": "notification",
     "TimerScheduleExpression": "0 */15 * * * *"
   }
 }

@@ -7,6 +7,8 @@ using SendNotification.Services;
 using Microsoft.Extensions.Options;
 using System.Data.SqlClient;
 using Microsoft.Azure.ServiceBus;
+using Microsoft.Extensions.Logging;
+using System;
 
 [assembly: FunctionsStartup(typeof(SendNotification.Startup))]
 namespace SendNotification;
@@ -23,6 +25,7 @@ public class Startup : FunctionsStartup
 
         // Retrieve the configuration options
         Config configuration = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<Config>>().Value;
+        ILogger logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Startup>>();
 
         // Register services with DI
         builder.Services.AddScoped<IUserNotificationService, UserNotificationService>();

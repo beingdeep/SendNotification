@@ -36,7 +36,7 @@ public class Database : IDatabase
                 command.CommandType = CommandType.StoredProcedure;
 
                 // Add the parameter to the command
-                command.Parameters.Add("@LastExecutedTime", SqlDbType.DateTime2).Value = lastExecutedDateTime;
+                command.Parameters.Add("@lastExecutedTime", SqlDbType.DateTime2).Value = lastExecutedDateTime;
 
                 using (SqlDataReader reader = await command.ExecuteReaderAsync())
                 {
