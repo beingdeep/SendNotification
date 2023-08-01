@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 
 namespace SendNotification.Utilities;
+
+[ExcludeFromCodeCoverage]
 public static class HelperUtility
 {
     public static string SerializeNotification<T>(T notification)

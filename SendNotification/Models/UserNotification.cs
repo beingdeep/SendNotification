@@ -1,4 +1,8 @@
-﻿namespace SendNotification.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SendNotification.Models;
+
+[ExcludeFromCodeCoverage]
 public class UserNotification
 {
     public int RecordId { get; set; }

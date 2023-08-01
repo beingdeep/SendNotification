@@ -1,4 +1,8 @@
-﻿namespace SendNotification.Configurations;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SendNotification.Configurations;
+
+[ExcludeFromCodeCoverage]
 public static class Constants
 {
     // Database Procedure Name
