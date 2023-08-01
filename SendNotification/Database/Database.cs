@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 using SendNotification.Models;
 
-namespace SendNotification.Database; 
+namespace SendNotification.Database;
 public class Database : IDatabase
 {
     private readonly SqlConnection _sqlConnection;
@@ -36,31 +36,50 @@ public class Database : IDatabase
                 command.CommandType = CommandType.StoredProcedure;
 
                 // Add the parameter to the command
-                command.Parameters.Add("@lastExecutedTime", SqlDbType.DateTime2).Value = lastExecutedDateTime;
+                command.Parameters.Add("@lastExecutedTime", SqlDbType.DateTime2).Value = lastExecutedDateTime.AddDays(-1);
 
-                using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+                // Read the data from the SqlDataReader and populate the list of UserNotification objects
+                while (reader.Read())
                 {
-                    // Read the data from the SqlDataReader and populate the list of UserNotification objects
-                    while (reader.Read())
+                    UserNotification notification = new()
                     {
-                        UserNotification notification = new()
-                        {
-                            RecordId = Convert.ToInt32(reader["RecordId"]),
-                            UserId = Convert.ToInt32(reader["UserId"]),
-                            UserName = reader["UserName"].ToString(),
-                            UserEmail = reader["UserEmail"].ToString(),
-                            DataValue = reader["DataValue"].ToString(),
-                            NotificationFlag = Convert.ToBoolean(reader["NotificationFlag"])
-                        };
+                        RecordId = Convert.ToInt32(reader["RecordId"]),
+                        UserId = Convert.ToInt32(reader["UserId"]),
+                        UserName = reader["UserName"].ToString(),
+                        UserEmail = reader["UserEmail"].ToString(),
+                        DataValue = reader["DataValue"].ToString(),
+                        NotificationFlag = Convert.ToBoolean(reader["NotificationFlag"])
+                    };
 
-                        notifications.Add(notification);
-                    }
+                    notifications.Add(notification);
                 }
             }
 
             _logger.LogInformation($"CallUsersToNotifyProc method executed successfully. Found {notifications.Count} notifications.");
 
             return notifications;
+        }
+        catch (SqlException ex)
+        { 
+
+            // Handle different SQL exception numbers based on your needs
+            switch (ex.Number)
+            {
+                case 4060:
+                    // Handle database not found or unavailable
+                    _logger.LogError(ex, "An error occurred, database not found");
+                    break;
+                case 18456:
+                    // Handle login failed
+                    _logger.LogError(ex, "An error occurred, database login failed");
+                    break;
+                default:
+                    // Handle other SQL exceptions or take generic actions
+                    _logger.LogError(ex, $"An error occurred, while working in the database: {ex.Message}");
+                    break;
+            }
         }
         catch (Exception ex)
         {

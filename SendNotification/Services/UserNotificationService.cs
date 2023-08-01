@@ -76,6 +76,16 @@ namespace SendNotification.Services
                     // Log successful message sending
                     _logger.LogInformation($"Message sent to Service Bus queue for UserId: {notification.UserId}");
                 }
+                catch (MessagingEntityNotFoundException ex)
+                {
+                    // This exception is thrown when the queue is not found
+                    _logger.LogError(ex, $"Messaging Entity Not Found: {ex.Message}");
+                }
+                catch (ServiceBusException ex)
+                {
+                    // This exception is thrown for transient errors (e.g., network issues, server busy)
+                    _logger.LogError(ex, $"Service Bus Exception: {ex.Message}");
+                } 
                 catch (Exception ex)
                 {
                     // Log any exceptions that occur while sending the message
