@@ -2,7 +2,7 @@
 using System.Data.SqlClient;
 
 var numberOfRecords = 100;
-var connectionString = "Server=tcp:raboassignment.database.windows.net,1433;Initial Catalog=raboassignment;Persist Security Info=False;User ID=sadmin;Password=Winter@456;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+var connectionString = "";
 
 Random random = new Random();
 
