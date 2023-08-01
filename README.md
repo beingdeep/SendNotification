@@ -1,13 +1,12 @@
 # Send Notification Assignment Solution
 
-The Send Notification project is an Azure Function App that facilitates sending notifications to users by processing user notifications and sending them to a Service Bus queue. This project is built using Microsoft Azure Functions, Microsoft Azure Service Bus, and relies on an external database for retrieving user notifications. Detailed Assignment can be found here [a relative link](ASSIGNMENT.md)
+The Send Notification project is an Azure Function App that facilitates sending notifications to users by processing user notifications and sending them to a Service Bus queue. This project is built using Microsoft Azure Functions, and Microsoft Azure Service Bus, and relies on an external database for retrieving user notifications. Detailed Assignment can be found [here](ASSIGNMENT.md).
 
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Improvement](#improvement)
+- [Project Structure](#project-structure) 
 
 ## Prerequisites
 
@@ -52,14 +51,11 @@ The solution consists of 2 projects.
  - The GetNotificationDetails function is part of a notification system that relies on the IUserNotificationService to handle user notifications. The class is designed to fetch notifications from an external service, process them, and send them to users via a Service Bus queue or another means, which is not shown in this code snippet.
 
 ### SendNotification.Test
-  - There are total of 7 Test Cases to test the functionality in the isolation
+  - There are a total of 7 Test Cases to test the functionality in the isolation
   - RunAsync_ValidNotifications_ProcessesNotifications
   - RunAsync_NoNotifications_DoesNotProcessNotifications
   - RunAsync_ProcessNotificationsError_ThrowsException
   - GetUsersToNotify_ValidInput_ReturnsNotifications
   - GetUsersToNotify_DatabaseError_ThrowsException
   - ProcessNotificationsAsync_ValidNotifications_LogsAndSendsMessages
-  - ProcessNotificationsAsync_NullNotifications_LogsAndThrowsException
-
-## Improvement
-
+  - ProcessNotificationsAsync_NullNotifications_LogsAndThrowsException 
