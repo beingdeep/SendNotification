@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-
+using SendNotification.Configurations;
 using SendNotification.Models;
 
 namespace SendNotification.Database;
@@ -30,7 +30,7 @@ public class Database : IDatabase
         {
             await _sqlConnection.OpenAsync();
 
-            using (SqlCommand command = new("sp_UsersToNotify", _sqlConnection))
+            using (SqlCommand command = new($"{Constants.STORED_PROCEDURE_NAME}", _sqlConnection))
             {
                 command.CommandType = CommandType.StoredProcedure;
 
