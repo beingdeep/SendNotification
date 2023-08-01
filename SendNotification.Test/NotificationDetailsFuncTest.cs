@@ -66,8 +66,7 @@ public class GetNotificationDetailsTests
         _userNotificationServiceMock.Verify(m => m.ProcessNotificationsAsync(It.IsAny<IEnumerable<UserNotification>>()), Times.Never);
     }
 
-    [TestMethod]
-    [ExpectedException(typeof(Exception))] // Change the exception type as needed
+    [TestMethod] 
     public async Task RunAsync_ProcessNotificationsError_ThrowsException()
     {
         // Arrange 
