@@ -27,5 +27,5 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
-      - name: Run tests
-        run: dotnet test --configuration Release --no-build --logger trx --results-directory TestResults
+      - name: Run tests and generate coverage report
+        run: dotnet test --configuration Release --no-build --logger trx --results-directory TestResults /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
