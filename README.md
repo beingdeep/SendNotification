@@ -43,7 +43,7 @@ The solution consists of 2 projects.
   - SendNotification.Test
 
 ### Summary
- - The GetNotificationDetails class contains an Azure Function RunAsync that is triggered by a timer at specified intervals.
+ - The GetNotificationDetails class contains an Azure Function GetNotificationDetails that is triggered by a timer at specified intervals.
  - The function starts by logging the execution time using a logger.
  - It calls the GetUsersToNotify method of the IUserNotificationService to fetch a list of notifications for users based on the last execution time of the function.
  - If there are notifications to process (i.e., the list is not empty), the function calls the ProcessNotificationsAsync method of the IUserNotificationService to handle the notifications.
