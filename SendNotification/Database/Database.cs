@@ -28,7 +28,6 @@ public class Database : IDatabase
 
         try
         {
-            // Open the SQL connection
             await _sqlConnection.OpenAsync();
 
             using (SqlCommand command = new("sp_UsersToNotify", _sqlConnection))
@@ -36,24 +35,25 @@ public class Database : IDatabase
                 command.CommandType = CommandType.StoredProcedure;
 
                 // Add the parameter to the command
-                command.Parameters.Add("@lastExecutedTime", SqlDbType.DateTime2).Value = lastExecutedDateTime.AddDays(-1);
+                command.Parameters.Add("@lastExecutedTime", SqlDbType.DateTime2).Value = lastExecutedDateTime;
 
-                using SqlDataReader reader = await command.ExecuteReaderAsync();
-
-                // Read the data from the SqlDataReader and populate the list of UserNotification objects
-                while (reader.Read())
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
                 {
-                    UserNotification notification = new()
+                    // Read the data from the SqlDataReader and populate the list of UserNotification objects
+                    while (reader.Read())
                     {
-                        RecordId = Convert.ToInt32(reader["RecordId"]),
-                        UserId = Convert.ToInt32(reader["UserId"]),
-                        UserName = reader["UserName"].ToString(),
-                        UserEmail = reader["UserEmail"].ToString(),
-                        DataValue = reader["DataValue"].ToString(),
-                        NotificationFlag = Convert.ToBoolean(reader["NotificationFlag"])
-                    };
+                        UserNotification notification = new()
+                        {
+                            RecordId = Convert.ToInt32(reader["RecordId"]),
+                            UserId = Convert.ToInt32(reader["UserId"]),
+                            UserName = reader["UserName"].ToString(),
+                            UserEmail = reader["UserEmail"].ToString(),
+                            DataValue = reader["DataValue"].ToString(),
+                            NotificationFlag = Convert.ToBoolean(reader["NotificationFlag"])
+                        };
 
-                    notifications.Add(notification);
+                        notifications.Add(notification);
+                    }
                 }
             }
 
@@ -62,9 +62,8 @@ public class Database : IDatabase
             return notifications;
         }
         catch (SqlException ex)
-        { 
-
-            // Handle different SQL exception numbers based on your needs
+        {
+            // Handle different SQL exception
             switch (ex.Number)
             {
                 case 4060:
@@ -80,13 +79,9 @@ public class Database : IDatabase
                     _logger.LogError(ex, $"An error occurred, while working in the database: {ex.Message}");
                     break;
             }
+            throw;
         }
-        catch (Exception ex)
-        {
-            // Log any exceptions that occur during the process
-            _logger.LogError(ex, "An error occurred while executing the stored procedure.");
-            throw; // Rethrow the exception to the caller
-        }
+        catch { throw; }
         finally
         {
             // Close the SQL connection in a finally block to ensure it is closed, even if an exception occurs

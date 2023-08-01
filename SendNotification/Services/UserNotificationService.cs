@@ -44,10 +44,8 @@ namespace SendNotification.Services
 
                 return notifications;
             }
-            catch (Exception ex)
+            catch
             {
-                // Log any exceptions that occur during the process
-                _logger.LogError(ex, "An error occurred while getting notifications for users.");
                 throw; // Rethrow the exception to the caller
             }
         }
@@ -80,16 +78,16 @@ namespace SendNotification.Services
                 {
                     // This exception is thrown when the queue is not found
                     _logger.LogError(ex, $"Messaging Entity Not Found: {ex.Message}");
+                    throw;
                 }
                 catch (ServiceBusException ex)
                 {
                     // This exception is thrown for transient errors (e.g., network issues, server busy)
                     _logger.LogError(ex, $"Service Bus Exception: {ex.Message}");
+                    throw;
                 } 
-                catch (Exception ex)
+                catch
                 {
-                    // Log any exceptions that occur while sending the message
-                    _logger.LogError(ex, $"Error sending message to Service Bus queue for UserId: {notification.UserId}");
                     throw;
                 }
             }
