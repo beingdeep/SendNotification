@@ -48,7 +48,7 @@ The solution consists of 2 projects.
  - It calls the GetUsersToNotify method of the IUserNotificationService to fetch a list of notifications for users based on the last execution time of the function.
  - If there are notifications to process (i.e., the list is not empty), the function calls the ProcessNotificationsAsync method of the IUserNotificationService to handle the notifications.
  - If any exceptions occur during the process, they are logged using the logger.
- - The GetNotificationDetails function is part of a notification system that relies on the IUserNotificationService to handle user notifications. The class is designed to fetch notifications from an external service, process them, and send them to users via a Service Bus queue or another means, which is not shown in this code snippet.
+ - The GetNotificationDetails function is part of a notification system that relies on the IUserNotificationService to handle user notifications. The class is designed to fetch notifications from an external service, process them, and send them to users via a Service Bus queue.
 
 ### SendNotification.Test
   - There are a total of 7 Test Cases to test the functionality in the isolation
