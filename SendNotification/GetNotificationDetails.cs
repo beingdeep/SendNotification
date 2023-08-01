@@ -1,11 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using SendNotification.Models;
 using SendNotification.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SendNotification
 {
@@ -45,7 +45,7 @@ namespace SendNotification
             catch (Exception ex)
             {
                 // Log any exceptions that occur during the process
-                _logger.LogError(ex, "An error occurred while processing notifications."); 
+                _logger.LogError(ex, "An error occurred while processing notifications.");
             }
         }
     }

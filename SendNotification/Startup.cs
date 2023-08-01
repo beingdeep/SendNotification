@@ -1,14 +1,12 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SendNotification.Configurations;
-using Db = SendNotification.Database;
-using SendNotification.Services;
 using Microsoft.Extensions.Options;
+using SendNotification.Configurations;
+using SendNotification.Services;
 using System.Data.SqlClient;
-using Microsoft.Azure.ServiceBus;
-using Microsoft.Extensions.Logging;
-using System;
+using Db = SendNotification.Database;
 
 [assembly: FunctionsStartup(typeof(SendNotification.Startup))]
 namespace SendNotification;
@@ -31,7 +29,7 @@ public class Startup : FunctionsStartup
         builder.Services.AddScoped<IUserNotificationService, UserNotificationService>();
         builder.Services.AddScoped<Db.IDatabase, Db.Database>();
 
-        builder.Services.AddScoped(c => new SqlConnection(configuration.SQLConnection)); 
+        builder.Services.AddScoped(c => new SqlConnection(configuration.SQLConnection));
 
         // Register the IQueueClient
         builder.Services.AddSingleton<IQueueClient>(c =>

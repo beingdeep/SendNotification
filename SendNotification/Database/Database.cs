@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using SendNotification.Configurations;
+using SendNotification.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using SendNotification.Configurations;
-using SendNotification.Models;
 
 namespace SendNotification.Database;
 public class Database : IDatabase

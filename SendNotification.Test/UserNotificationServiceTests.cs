@@ -1,8 +1,6 @@
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Moq;
-using SendNotification.Configurations;
 using SendNotification.Database;
 using SendNotification.Models;
 using SendNotification.Services;
@@ -14,7 +12,7 @@ public class UserNotificationServiceTests
 {
     private Mock<ILogger<UserNotificationService>> _loggerMock;
     private Mock<IDatabase> _databaseMock;
-    private Mock<IQueueClient> _serviceBusQueueClientMock; 
+    private Mock<IQueueClient> _serviceBusQueueClientMock;
 
     [TestInitialize]
     public void TestInitialize()

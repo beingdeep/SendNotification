@@ -3,11 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SendNotification.Services
+namespace SendNotification.Services;
+public interface IUserNotificationService
 {
-    public interface IUserNotificationService
-    { 
-        Task<IEnumerable<UserNotification>> GetUsersToNotify(DateTime lastExecutedDateTime);
-        Task ProcessNotificationsAsync(IEnumerable<UserNotification> notifications);
-    }
+    Task<IEnumerable<UserNotification>> GetUsersToNotify(DateTime lastExecutedDateTime);
+    Task ProcessNotificationsAsync(IEnumerable<UserNotification> notifications);
 }
