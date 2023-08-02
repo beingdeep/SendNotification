@@ -23,7 +23,6 @@ public class Startup : FunctionsStartup
 
         // Retrieve the configuration options
         Config configuration = builder.Services.BuildServiceProvider().GetRequiredService<IOptions<Config>>().Value;
-        //ILogger logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger>();
 
         // Register services with DI
         builder.Services.AddScoped<IUserNotificationService, UserNotificationService>();
